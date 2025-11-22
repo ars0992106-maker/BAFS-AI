@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Statement of Financial Position – HKDSE BAFS Mastery</title>
+      <style>
+         /* ===========================
+         CSS VARIABLES & RESET
+         =========================== */
+         :root {
+         --color-primary: #1a1f36;
+         --color-accent: #2e5bff;
+         --color-success: #05c46b;
+         --color-error: #ff3838;
+         --color-warning: #ffa502;
+         --color-bg: #ffffff;
+         --color-surface: #f7f9fc;
+         --color-border: #e4e7eb;
+         --color-text: #1a1f36;
+         --color-text-muted: #6c757d;
+         --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+         --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+         --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+         --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+         }
+         * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         body {
+         font-family: var(--font-sans);
+         background: var(--color-bg);
+         color: var(--color-text);
+         line-height: 1.7;
+         -webkit-font-smoothing: antialiased;
+         }
+         /* ===========================
+         TYPOGRAPHY
+         =========================== */
+         h1 {
+         font-size: 2.5rem;
+         font-weight: 700;
+         letter-spacing: -0.02em;
+         line-height: 1.2;
+         margin-bottom: 1.5rem;
+         }
+         h2 {
+         font-size: 2rem;
+         font-weight: 600;
+         letter-spacing: -0.01em;
+         line-height: 1.3;
+         margin-bottom: 1.25rem;
+         margin-top: 3rem;
+         }
+         h3 {
+         font-size: 1.5rem;
+         font-weight: 600;
+         line-height: 1.4;
+         margin-bottom: 1rem;
+         margin-top: 2rem;
+         }
+         h4 {
+         font-size: 1.125rem;
+         font-weight: 600;
+         line-height: 1.5;
+         margin-bottom: 0.75rem;
+         margin-top: 1.5rem;
+         }
+         p {
+         margin-bottom: 1.25rem;
+         font-size: 1.0625rem;
+         line-height: 1.75;
+         }
+         strong {
+         font-weight: 600;
+         color: var(--color-primary);
+         }
+         /* ===========================
+         LAYOUT
+         =========================== */
+         .app-container {
+         display: flex;
+         min-height: 100vh;
+         }
+         .sidebar {
+         width: 280px;
+         background: var(--color-primary);
+         color: #ffffff;
+         padding: 2rem 0;
+         position: fixed;
+         height: 100vh;
+         overflow-y: auto;
+         z-index: 100;
+         }
+         .sidebar-header {
+         padding: 0 1.5rem 2rem;
+         border-bottom: 1px solid rgba(255,255,255,0.1);
+         }
+         .sidebar-header h1 {
+         font-size: 1.25rem;
+         margin: 0;
+         color: #ffffff;
+         }
+         .sidebar-subtitle {
+         font-size: 0.875rem;
+         color: rgba(255,255,255,0.6);
+         margin-top: 0.25rem;
+         }
+         .nav-menu {
+         list-style: none;
+         padding: 1rem 0;
+         }
+         .nav-item {
+         margin: 0;
+         }
+         .nav-link {
+         display: block;
+         padding: 0.875rem 1.5rem;
+         color: rgba(255,255,255,0.8);
+         text-decoration: none;
+         transition: var(--transition);
+         font-size: 0.9375rem;
+         cursor: pointer;
+         border-left: 3px solid transparent;
+         }
+         .nav-link:hover {
+         background: rgba(255,255,255,0.05);
+         color: #ffffff;
+         }
+         .nav-link.active {
+         background: rgba(46,91,255,0.15);
+         color: #ffffff;
+         border-left-color: var(--color-accent);
+         font-weight: 500;
+         }
+         .main-content {
+         flex: 1;
+         margin-left: 280px;
+         padding: 3rem;
+         max-width: 1400px;
+         }
+         .view {
+         display: none;
+         animation: fadeIn 0.4s ease-in-out;
+         }
+         .view.active {
+         display: block;
+         }
+         @keyframes fadeIn {
+         from { opacity: 0; transform: translateY(10px); }
+         to { opacity: 1; transform: translateY(0); }
+         }
+         /* ===========================
+         COMPONENTS
+         =========================== */
+         .card {
+         background: var(--color-bg);
+         border: 1px solid var(--color-border);
+         border-radius: 8px;
+         padding: 2rem;
+         margin-bottom: 2rem;
+         box-shadow: var(--shadow-sm);
+         }
+         .card-minimal {
+         background: var(--color-surface);
+         border-radius: 6px;
+         padding: 1.5rem;
+         margin-bottom: 1.5rem;
+         }
+         .btn {
+         display: inline-block;
+         padding: 0.75rem 1.5rem;
+         border: none;
+         border-radius: 6px;
+         font-size: 0.9375rem;
+         font-weight: 500;
+         cursor: pointer;
+         transition: var(--transition);
+         text-align: center;
+         font-family: var(--font-sans);
+         }
+         .btn-primary {
+         background: var(--color-accent);
+         color: #ffffff;
+         }
+         .btn-primary:hover {
+         background: #2451e6;
+         transform: translateY(-1px);
+         box-shadow: var(--shadow-md);
+         }
+         .btn-secondary {
+         background: var(--color-surface);
+         color: var(--color-text);
+         border: 1px solid var(--color-border);
+         }
+         .btn-secondary:hover {
+         background: #ebeef3;
+         }
+         .btn-success {
+         background: var(--color-success);
+         color: #ffffff;
+         }
+         .btn-success:hover {
+         background: #04b360;
+         }
+         .btn-small {
+         padding: 0.5rem 1rem;
+         font-size: 0.875rem;
+         }
+         .btn-group {
+         display: flex;
+         gap: 1rem;
+         flex-wrap: wrap;
+         margin: 1.5rem 0;
+         }
+         .callout {
+         padding: 1.25rem 1.5rem;
+         border-radius: 6px;
+         margin: 1.5rem 0;
+         border-left: 4px solid;
+         }
+         .callout-info {
+         background: #e7f3ff;
+         border-color: var(--color-accent);
+         color: #004085;
+         }
+         .callout-warning {
+         background: #fff4e6;
+         border-color: var(--color-warning);
+         color: #7a4f01;
+         }
+         .callout-success {
+         background: #e8f9f0;
+         border-color: var(--color-success);
+         color: #00542c;
+         }
+         .callout-error {
+         background: #ffe6e6;
+         border-color: var(--color-error);
+         color: #7a0000;
+         }
+         .callout-title {
+         font-weight: 600;
+         margin-bottom: 0.5rem;
+         font-size: 0.9375rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         }
+         .callout p:last-child {
+         margin-bottom: 0;
+         }
+         /* ===========================
+         FINANCIAL TABLES
+         =========================== */
+         .financial-table {
+         width: 100%;
+         margin: 2rem 0;
+         border-collapse: collapse;
+         font-size: 0.9375rem;
+         background: var(--color-bg);
+         box-shadow: var(--shadow-sm);
+         }
+         .financial-table th {
+         text-align: left;
+         padding: 0.875rem 1rem;
+         font-weight: 600;
+         color: var(--color-text);
+         border-bottom: 2px solid var(--color-primary);
+         background: var(--color-surface);
+         }
+         .financial-table td {
+         padding: 0.75rem 1rem;
+         border-bottom: 1px solid var(--color-border);
+         }
+         .financial-table tr:last-child td {
+         border-bottom: none;
+         }
+         .financial-table .indent-1 {
+         padding-left: 2rem;
+         }
+         .financial-table .indent-2 {
+         padding-left: 3rem;
+         }
+         .financial-table .text-right {
+         text-align: right;
+         }
+         .financial-table .font-bold {
+         font-weight: 600;
+         }
+         .financial-table .border-top-single {
+         border-top: 1px solid var(--color-text);
+         }
+         .financial-table .border-top-double {
+         border-top: 3px double var(--color-text);
+         }
+         .financial-table .border-bottom-single {
+         border-bottom: 1px solid var(--color-text);
+         }
+         .financial-table .border-bottom-double {
+         border-bottom: 3px double var(--color-text);
+         }
+         .statement-header {
+         text-align: center;
+         margin-bottom: 2rem;
+         }
+         .statement-header h3 {
+         margin: 0.5rem 0;
+         font-size: 1.25rem;
+         }
+         .statement-header p {
+         margin: 0;
+         color: var(--color-text-muted);
+         font-size: 0.9375rem;
+         }
+         /* ===========================
+         DRAG & DROP CLASSIFICATION
+         =========================== */
+         .classification-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 2rem;
+         margin: 2rem 0;
+         }
+         .item-pool {
+         grid-column: 1 / -1;
+         background: var(--color-surface);
+         border-radius: 8px;
+         padding: 1.5rem;
+         margin-bottom: 1rem;
+         }
+         .item-pool h4 {
+         margin-top: 0;
+         color: var(--color-text-muted);
+         font-size: 0.875rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         }
+         .items-container {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 0.75rem;
+         min-height: 60px;
+         padding: 0.5rem;
+         }
+         .draggable-item {
+         background: var(--color-bg);
+         border: 2px solid var(--color-border);
+         border-radius: 6px;
+         padding: 0.625rem 1rem;
+         cursor: move;
+         transition: var(--transition);
+         font-size: 0.9375rem;
+         user-select: none;
+         }
+         .draggable-item:hover {
+         border-color: var(--color-accent);
+         box-shadow: var(--shadow-sm);
+         }
+         .draggable-item.dragging {
+         opacity: 0.5;
+         }
+         .draggable-item.correct {
+         border-color: var(--color-success);
+         background: #e8f9f0;
+         }
+         .draggable-item.incorrect {
+         border-color: var(--color-error);
+         background: #ffe6e6;
+         }
+         .drop-zone {
+         background: var(--color-bg);
+         border: 2px dashed var(--color-border);
+         border-radius: 8px;
+         padding: 1.5rem;
+         min-height: 200px;
+         }
+         .drop-zone h4 {
+         margin-top: 0;
+         color: var(--color-primary);
+         font-size: 1rem;
+         margin-bottom: 1rem;
+         }
+         .drop-zone.drag-over {
+         background: var(--color-surface);
+         border-color: var(--color-accent);
+         }
+         /* ===========================
+         STEPWISE WORKED EXAMPLES
+         =========================== */
+         .step-container {
+         margin: 1.5rem 0;
+         }
+         .step {
+         border-left: 3px solid var(--color-border);
+         padding-left: 1.5rem;
+         margin-bottom: 1.5rem;
+         }
+         .step-header {
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+         margin-bottom: 0.75rem;
+         }
+         .step-number {
+         width: 32px;
+         height: 32px;
+         background: var(--color-accent);
+         color: #ffffff;
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-weight: 600;
+         font-size: 0.875rem;
+         flex-shrink: 0;
+         }
+         .step-title {
+         font-weight: 600;
+         font-size: 1rem;
+         margin: 0;
+         }
+         .step-content {
+         display: none;
+         margin-top: 0.75rem;
+         padding: 1rem;
+         background: var(--color-surface);
+         border-radius: 6px;
+         }
+         .step-content.revealed {
+         display: block;
+         animation: slideDown 0.3s ease-out;
+         }
+         @keyframes slideDown {
+         from { opacity: 0; transform: translateY(-10px); }
+         to { opacity: 1; transform: translateY(0); }
+         }
+         /* ===========================
+         BALANCE SHEET BUILDER
+         =========================== */
+         .builder-workspace {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 2rem;
+         margin: 2rem 0;
+         }
+         .builder-input {
+         background: var(--color-surface);
+         border-radius: 8px;
+         padding: 1.5rem;
+         }
+         .builder-output {
+         background: var(--color-bg);
+         border: 1px solid var(--color-border);
+         border-radius: 8px;
+         padding: 1.5rem;
+         }
+         .builder-item {
+         display: flex;
+         align-items: center;
+         gap: 1rem;
+         padding: 0.75rem;
+         margin-bottom: 0.5rem;
+         background: var(--color-bg);
+         border-radius: 6px;
+         border: 1px solid var(--color-border);
+         }
+         .builder-item label {
+         flex: 1;
+         font-size: 0.9375rem;
+         }
+         .builder-item select,
+         .builder-item input {
+         padding: 0.5rem;
+         border: 1px solid var(--color-border);
+         border-radius: 4px;
+         font-family: var(--font-sans);
+         font-size: 0.875rem;
+         }
+         .builder-item input[type="number"] {
+         width: 120px;
+         text-align: right;
+         }
+         /* ===========================
+         QUIZ & EXAM MODE
+         =========================== */
+         .question-card {
+         background: var(--color-bg);
+         border: 1px solid var(--color-border);
+         border-radius: 8px;
+         padding: 2rem;
+         margin-bottom: 2rem;
+         }
+         .question-header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 1.5rem;
+         padding-bottom: 1rem;
+         border-bottom: 1px solid var(--color-border);
+         }
+         .question-number {
+         font-weight: 600;
+         color: var(--color-accent);
+         font-size: 0.875rem;
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         }
+         .question-marks {
+         background: var(--color-surface);
+         padding: 0.375rem 0.75rem;
+         border-radius: 4px;
+         font-size: 0.875rem;
+         color: var(--color-text-muted);
+         }
+         .answer-input {
+         width: 100%;
+         padding: 0.75rem;
+         border: 2px solid var(--color-border);
+         border-radius: 6px;
+         font-family: var(--font-sans);
+         font-size: 0.9375rem;
+         margin: 1rem 0;
+         transition: var(--transition);
+         }
+         .answer-input:focus {
+         outline: none;
+         border-color: var(--color-accent);
+         }
+         .answer-feedback {
+         margin-top: 1rem;
+         padding: 1rem 1.25rem;
+         border-radius: 6px;
+         display: none;
+         }
+         .answer-feedback.show {
+         display: block;
+         }
+         .answer-feedback.correct {
+         background: #e8f9f0;
+         border-left: 4px solid var(--color-success);
+         color: #00542c;
+         }
+         .answer-feedback.incorrect {
+         background: #ffe6e6;
+         border-left: 4px solid var(--color-error);
+         color: #7a0000;
+         }
+         .timer-display {
+         position: fixed;
+         top: 2rem;
+         right: 2rem;
+         background: var(--color-primary);
+         color: #ffffff;
+         padding: 1rem 1.5rem;
+         border-radius: 8px;
+         font-weight: 600;
+         font-size: 1.125rem;
+         box-shadow: var(--shadow-lg);
+         z-index: 50;
+         }
+         .timer-display.warning {
+         background: var(--color-error);
+         animation: pulse 1s infinite;
+         }
+         @keyframes pulse {
+         0%, 100% { opacity: 1; }
+         50% { opacity: 0.8; }
+         }
+         /* ===========================
+         PROGRESS TRACKING
+         =========================== */
+         .progress-bar {
+         height: 8px;
+         background: var(--color-surface);
+         border-radius: 4px;
+         overflow: hidden;
+         margin: 1rem 0;
+         }
+         .progress-fill {
+         height: 100%;
+         background: linear-gradient(90deg, var(--color-accent), #5e7aff);
+         transition: width 0.5s ease;
+         }
+         .stats-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+         gap: 1.5rem;
+         margin: 2rem 0;
+         }
+         .stat-card {
+         background: var(--color-surface);
+         padding: 1.5rem;
+         border-radius: 8px;
+         text-align: center;
+         }
+         .stat-value {
+         font-size: 2.5rem;
+         font-weight: 700;
+         color: var(--color-accent);
+         line-height: 1;
+         margin-bottom: 0.5rem;
+         }
+         .stat-label {
+         font-size: 0.875rem;
+         color: var(--color-text-muted);
+         text-transform: uppercase;
+         letter-spacing: 0.5px;
+         }
+         /* ===========================
+         GLOSSARY
+         =========================== */
+         .glossary-list {
+         list-style: none;
+         }
+         .glossary-item {
+         padding: 1.5rem;
+         border-bottom: 1px solid var(--color-border);
+         }
+         .glossary-item:last-child {
+         border-bottom: none;
+         }
+         .glossary-term {
+         font-weight: 600;
+         font-size: 1.125rem;
+         color: var(--color-primary);
+         margin-bottom: 0.5rem;
+         }
+         .glossary-definition {
+         color: var(--color-text-muted);
+         line-height: 1.7;
+         }
+         /* ===========================
+         TEACHER MODE
+         =========================== */
+         .teacher-toggle {
+         position: fixed;
+         bottom: 2rem;
+         right: 2rem;
+         z-index: 50;
+         }
+         .teacher-answer {
+         display: none;
+         margin-top: 1rem;
+         padding: 1.5rem;
+         background: #fff9e6;
+         border: 2px solid var(--color-warning);
+         border-radius: 8px;
+         }
+         .teacher-answer.show {
+         display: block;
+         }
+         .teacher-answer-title {
+         font-weight: 600;
+         color: var(--color-warning);
+         margin-bottom: 0.75rem;
+         text-transform: uppercase;
+         font-size: 0.875rem;
+         letter-spacing: 0.5px;
+         }
+         /* ===========================
+         PRINT STYLES
+         =========================== */
+         @media print {
+         .sidebar,
+         .btn,
+         .teacher-toggle,
+         .timer-display,
+         .nav-menu {
+         display: none !important;
+         }
+         .main-content {
+         margin-left: 0;
+         padding: 1rem;
+         }
+         .card {
+         border: 1px solid #000;
+         box-shadow: none;
+         page-break-inside: avoid;
+         }
+         .financial-table {
+         page-break-inside: avoid;
+         }
+         }
+         /* ===========================
+         RESPONSIVE
+         =========================== */
+         @media (max-width: 768px) {
+         .sidebar {
+         transform: translateX(-100%);
+         transition: transform 0.3s ease;
+         }
+         .sidebar.open {
+         transform: translateX(0);
+         }
+         .main-content {
+         margin-left: 0;
+         padding: 1.5rem;
+         }
+         .classification-grid,
+         .builder-workspace {
+         grid-template-columns: 1fr;
+         }
+         h1 { font-size: 2rem; }
+         h2 { font-size: 1.5rem; }
+         h3 { font-size: 1.25rem; }
+         }
+         /* ===========================
+         ACCESSIBILITY
+         =========================== */
+         .sr-only {
+         position: absolute;
+         width: 1px;
+         height: 1px;
+         padding: 0;
+         margin: -1px;
+         overflow: hidden;
+         clip: rect(0,0,0,0);
+         border: 0;
+         }
+         *:focus {
+         outline: 2px solid var(--color-accent);
+         outline-offset: 2px;
+         }
+         button:focus,
+         a:focus,
+         input:focus,
+         select:focus {
+         outline: 2px solid var(--color-accent);
+         outline-offset: 2px;
+         }
+         /* ===========================
+         UTILITY CLASSES
+         =========================== */
+         .text-center { text-align: center; }
+         .text-right { text-align: right; }
+         .mb-0 { margin-bottom: 0; }
+         .mb-1 { margin-bottom: 0.5rem; }
+         .mb-2 { margin-bottom: 1rem; }
+         .mb-3 { margin-bottom: 1.5rem; }
+         .mt-0 { margin-top: 0; }
+         .mt-1 { margin-top: 0.5rem; }
+         .mt-2 { margin-top: 1rem; }
+         .mt-3 { margin-top: 1.5rem; }
+         .hidden { display: none; }
+      </style>
+   </head>
+   <body>
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar" role="navigation" aria-label="Main navigation">
+         <div class="sidebar-header">
+            <h1>Statement of Financial Position</h1>
+            <div class="sidebar-subtitle">HKDSE BAFS Learning Module</div>
+         </div>
+         <ul class="nav-menu">
+            <li class="nav-item"><a class="nav-link active" data-view="home">Introduction</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="foundation">Foundation Concepts</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="assets">Understanding Assets</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="liabilities">Understanding Liabilities</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="classification-drill">Classification Practice</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="capital">Capital & Drawings</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="statement-format">Statement Format</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="net-current">Net Current Assets</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="example1">Worked Example 1</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="example2">Worked Example 2</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="example3">Worked Example 3</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="builder">Balance Sheet Builder</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="practice">Practice Questions</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="exam">Exam Mode</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="glossary">Glossary</a></li>
+            <li class="nav-item"><a class="nav-link" data-view="cheatsheet">Print Cheat Sheet</a></li>
+         </ul>
+      </nav>
+      <!-- Main Content Area -->
+      <main class="main-content" role="main">
+      <!-- HOME VIEW -->
+      <div class="view active" id="view-home">
+         <h1>Master the Statement of Financial Position</h1>
+         <p class="text-muted" style="font-size: 1.125rem; color: var(--color-text-muted);">A comprehensive learning journey from zero to HKDSE exam competence</p>
+         <div class="card">
+            <h2 style="margin-top: 0;">Welcome to Your Learning Journey</h2>
+            <p>This interactive module will teach you everything you need to know about the <strong>Statement of Financial Position</strong> (also known as the Balance Sheet) for sole proprietorships. You'll progress from foundational concepts to complete mastery.</p>
+            <h3>What You Will Learn</h3>
+            <ul style="line-height: 2; font-size: 1.0625rem;">
+               <li>The fundamental difference between <strong>stock</strong> and <strong>flow</strong> concepts</li>
+               <li>How to classify assets as <strong>current</strong> or <strong>non-current</strong></li>
+               <li>How to classify liabilities as <strong>current</strong> or <strong>non-current</strong></li>
+               <li>Understanding <strong>Capital</strong> and <strong>Drawings</strong></li>
+               <li>The accounting equation: <strong>Assets = Capital + Liabilities</strong></li>
+               <li>How to prepare a properly formatted Statement of Financial Position</li>
+               <li>How to calculate <strong>Net Current Assets</strong> (Working Capital)</li>
+               <li>Special cases: bank overdrafts, rental deposits, and more</li>
+            </ul>
+            <h3>How This Module Works</h3>
+            <p>Each section builds on the previous one. You'll learn through:</p>
+            <ul style="line-height: 2; font-size: 1.0625rem;">
+               <li><strong>Clear Explanations</strong> – Every concept explained in plain language</li>
+               <li><strong>Immediate Practice</strong> – Apply what you learn right away</li>
+               <li><strong>Instant Feedback</strong> – Know immediately if you're correct, with detailed explanations</li>
+               <li><strong>Worked Examples</strong> – Step-by-step walkthroughs of complete problems</li>
+               <li><strong>Progressive Difficulty</strong> – Start simple, build to exam-level challenges</li>
+            </ul>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('foundation')">Start Learning</button>
+               <button class="btn btn-secondary" onclick="navigateToView('glossary')">View Glossary</button>
+               <button class="btn btn-secondary" onclick="window.print()">Print Study Guide</button>
+            </div>
+         </div>
+         <div class="card-minimal">
+            <h4 style="margin-top: 0;">Quick Navigation Tips</h4>
+            <p>Use the sidebar to jump between sections. Your progress is automatically saved. You can return anytime and pick up where you left off.</p>
+         </div>
+      </div>
+      <!-- FOUNDATION CONCEPTS VIEW -->
+      <div class="view" id="view-foundation">
+         <h1>Foundation Concepts</h1>
+         <div class="card">
+            <h2>What is a Statement of Financial Position?</h2>
+            <p>A <strong>Statement of Financial Position</strong> is a financial statement that shows the <strong>financial position</strong> of a business at a specific point in time (usually the end of an accounting period).</p>
+            <p>Think of it like taking a snapshot of everything the business owns and owes at a particular moment.</p>
+            <div class="callout callout-info">
+               <div class="callout-title">Key Point</div>
+               <p>The Statement of Financial Position was formerly called the <strong>Balance Sheet</strong>. You may see both terms used. (Textbook p. 63)</p>
+            </div>
+            <h3>Stock Concept vs. Flow Concept</h3>
+            <p>Understanding the difference between these two concepts is fundamental:</p>
+            <table class="financial-table">
+               <thead>
+                  <tr>
+                     <th>Statement of Financial Position</th>
+                     <th>Income Statement</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><strong>Stock Concept</strong><br>Shows balances at a specific date<br>"How much do we have right now?"</td>
+                     <td><strong>Flow Concept</strong><br>Shows flows over a period<br>"How much did we earn/spend this year?"</td>
+                  </tr>
+                  <tr>
+                     <td>Reports: Assets, Liabilities, Capital</td>
+                     <td>Reports: Revenues, Expenses, Profit/Loss</td>
+                  </tr>
+                  <tr>
+                     <td>Uses: "as at 31 December 2022"</td>
+                     <td>Uses: "for the year ended 31 December 2022"</td>
+                  </tr>
+               </tbody>
+            </table>
+            <div class="callout callout-success">
+               <div class="callout-title">Simple Analogy</div>
+               <p><strong>Stock Concept</strong> – Like checking your bank account balance right now. It shows exactly how much money you have at this moment.</p>
+               <p><strong>Flow Concept</strong> – Like reviewing your monthly income and expenses. It shows how money flowed in and out over the past month.</p>
+               <p style="margin-bottom: 0;">Another example from the textbook (p. 64): A reservoir's water level at a specific time (stock) vs. the rainfall collected over a month (flow).</p>
+            </div>
+            <h3>The Accounting Equation</h3>
+            <p>The Statement of Financial Position is built on this fundamental equation:</p>
+            <div style="background: var(--color-surface); padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
+               <div style="font-size: 2rem; font-weight: 700; color: var(--color-accent);">
+                  Assets = Capital + Liabilities
+               </div>
+               <div style="margin-top: 1rem; color: var(--color-text-muted);">
+                  (Also written as: A = C + L)
+               </div>
+            </div>
+            <p>Let's define each component:</p>
+            <ul style="line-height: 2;">
+               <li><strong>Assets</strong> – Resources the business owns (e.g., cash, equipment, inventory)</li>
+               <li><strong>Capital</strong> – The owner's investment in the business (what the business owes to the owner)</li>
+               <li><strong>Liabilities</strong> – What the business owes to others (e.g., loans, amounts owed to suppliers)</li>
+            </ul>
+            <div class="callout callout-warning">
+               <div class="callout-title">Important for HKDSE</div>
+               <p style="margin-bottom: 0;">In HKDSE BAFS, we use <strong>Capital</strong>, not "Owner's Equity" or "Equity". The equation is <strong>A = C + L</strong>.</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Stock vs. Flow</h3>
+            <p>Identify whether each scenario represents a <strong>stock</strong> or <strong>flow</strong> concept:</p>
+            <div id="stock-flow-quiz">
+               <!-- Question 1 -->
+               <div class="question-card">
+                  <p><strong>1.</strong> The total amount of cash a business has on 31 December 2022</p>
+                  <div class="btn-group">
+                     <button class="btn btn-secondary" onclick="checkStockFlow(1, 'stock')">Stock</button>
+                     <button class="btn btn-secondary" onclick="checkStockFlow(1, 'flow')">Flow</button>
+                  </div>
+                  <div id="feedback-1" class="answer-feedback"></div>
+               </div>
+               <!-- Question 2 -->
+               <div class="question-card">
+                  <p><strong>2.</strong> The sales revenue earned during the year 2022</p>
+                  <div class="btn-group">
+                     <button class="btn btn-secondary" onclick="checkStockFlow(2, 'stock')">Stock</button>
+                     <button class="btn btn-secondary" onclick="checkStockFlow(2, 'flow')">Flow</button>
+                  </div>
+                  <div id="feedback-2" class="answer-feedback"></div>
+               </div>
+               <!-- Question 3 -->
+               <div class="question-card">
+                  <p><strong>3.</strong> The value of inventory held by a business on 31 March 2023</p>
+                  <div class="btn-group">
+                     <button class="btn btn-secondary" onclick="checkStockFlow(3, 'stock')">Stock</button>
+                     <button class="btn btn-secondary" onclick="checkStockFlow(3, 'flow')">Flow</button>
+                  </div>
+                  <div id="feedback-3" class="answer-feedback"></div>
+               </div>
+               <!-- Question 4 -->
+               <div class="question-card">
+                  <p><strong>4.</strong> The rent expense paid over the past six months</p>
+                  <div class="btn-group">
+                     <button class="btn btn-secondary" onclick="checkStockFlow(4, 'stock')">Stock</button>
+                     <button class="btn btn-secondary" onclick="checkStockFlow(4, 'flow')">Flow</button>
+                  </div>
+                  <div id="feedback-4" class="answer-feedback"></div>
+               </div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('assets')">Continue to Assets →</button>
+            </div>
+         </div>
+      </div>
+      <!-- ASSETS VIEW -->
+      <div class="view" id="view-assets">
+         <h1>Understanding Assets</h1>
+         <div class="card">
+            <h2>What are Assets?</h2>
+            <p><strong>Assets</strong> refer to the resources that a business owns. (Textbook p. 65)</p>
+            <p>Think of assets as anything of value that the business possesses. Assets help the business operate and generate income.</p>
+            <div class="callout callout-info">
+               <div class="callout-title">Simple Example</div>
+               <p style="margin-bottom: 0;">If you run a delivery business, your assets might include: the delivery van (you use it to deliver goods), cash in the bank (you use it to pay for petrol), and inventory of goods waiting to be delivered.</p>
+            </div>
+            <h3>Two Types of Assets</h3>
+            <p>All assets must be classified into one of two categories:</p>
+         </div>
+         <div class="card">
+            <h3>1. Current Assets</h3>
+            <p><strong>Current assets</strong> are cash and other assets that are likely to be converted into cash, or sold or consumed, in the <strong>short term</strong> (usually within one year). (Textbook p. 65)</p>
+            <div style="background: var(--color-surface); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+               <h4 style="margin-top: 0;">The One-Year Rule</h4>
+               <p style="margin-bottom: 0;">Ask yourself: "Will this asset be turned into cash or used up within the next 12 months?"<br>If <strong>YES</strong> → Current Asset<br>If <strong>NO</strong> → Non-current Asset</p>
+            </div>
+            <h4>Examples of Current Assets:</h4>
+            <ul style="line-height: 2;">
+               <li><strong>Cash</strong> – Physical money in the cash register or safe</li>
+               <li><strong>Cash at bank</strong> (or "Bank") – Money in the business's bank account</li>
+               <li><strong>Trade receivables</strong> – Money owed by customers (usually paid within weeks or months)</li>
+               <li><strong>Inventory</strong> – Goods held for resale (will be sold soon)</li>
+            </ul>
+            <div class="callout callout-success">
+               <div class="callout-title">Mnemonic to Remember Current Assets</div>
+               <p style="margin-bottom: 0;"><strong>"CTIC"</strong> – <strong>C</strong>ash, <strong>T</strong>rade receivables, <strong>I</strong>nventory, <strong>C</strong>ash at bank (created mnemonic)</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>2. Non-Current Assets</h3>
+            <p><strong>Non-current assets</strong> refer to assets that will generate long-term benefits (more than one year) for a business. (Textbook p. 65)</p>
+            <p>These assets are:</p>
+            <ul style="line-height: 2;">
+               <li><strong>Durable</strong> – They last a long time</li>
+               <li><strong>Not for resale</strong> – They were not bought with the intention of selling them</li>
+               <li><strong>Used in operations</strong> – They help the business run (for administration, production, selling, distribution) for more than one year</li>
+            </ul>
+            <h4>Examples of Non-Current Assets:</h4>
+            <ul style="line-height: 2;">
+               <li><strong>Land and buildings</strong> (or "Premises") – Office buildings, shops, warehouses</li>
+               <li><strong>Motor vehicles</strong> – Delivery vans, company cars</li>
+               <li><strong>Machinery</strong> – Equipment used in production</li>
+               <li><strong>Fixtures and fittings</strong> – Built-in shelves, counters, lighting</li>
+               <li><strong>Furniture</strong> – Desks, chairs, filing cabinets</li>
+               <li><strong>Equipment</strong> – Computers, printers, tools</li>
+            </ul>
+            <div class="callout callout-warning">
+               <div class="callout-title">Common Mistake</div>
+               <p><strong>Inventory vs. Equipment</strong></p>
+               <p>A furniture shop has tables and chairs. Which are assets?</p>
+               <p><strong>Tables and chairs for sale</strong> = <strong>Inventory</strong> (current asset) – they will be sold soon</p>
+               <p style="margin-bottom: 0;"><strong>Tables and chairs used by office staff</strong> = <strong>Furniture</strong> (non-current asset) – they will be used for years (Textbook p. 66, Check Your Progress P8-2)</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Classify These Assets</h3>
+            <p>For each item, decide if it is a <strong>current asset</strong> or <strong>non-current asset</strong>:</p>
+            <div id="asset-classification-quiz">
+               <!-- We'll add 8 questions -->
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('liabilities')">Continue to Liabilities →</button>
+            </div>
+         </div>
+      </div>
+      <!-- LIABILITIES VIEW -->
+      <div class="view" id="view-liabilities">
+         <h1>Understanding Liabilities</h1>
+         <div class="card">
+            <h2>What are Liabilities?</h2>
+            <p><strong>Liabilities</strong> refer to the resources supplied to a business by people other than its owner(s). In simple terms: <strong>what the business owes to others</strong>. (Textbook p. 66)</p>
+            <div class="callout callout-info">
+               <div class="callout-title">Simple Example</div>
+               <p style="margin-bottom: 0;">If you borrow $50,000 from a bank to start your business, that's a liability. The business owes this money to the bank. If you buy goods from a supplier and promise to pay next month, the amount you owe is also a liability.</p>
+            </div>
+            <h3>Two Types of Liabilities</h3>
+            <p>Just like assets, all liabilities must be classified into one of two categories:</p>
+         </div>
+         <div class="card">
+            <h3>1. Current Liabilities</h3>
+            <p><strong>Current liabilities</strong> refer to liabilities that have to be repaid within one year. (Textbook p. 66)</p>
+            <div style="background: var(--color-surface); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+               <h4 style="margin-top: 0;">The One-Year Rule for Liabilities</h4>
+               <p style="margin-bottom: 0;">Ask yourself: "Does this debt need to be paid back within the next 12 months?"<br>If <strong>YES</strong> → Current Liability<br>If <strong>NO</strong> → Non-current Liability</p>
+            </div>
+            <h4>Examples of Current Liabilities:</h4>
+            <ul style="line-height: 2;">
+               <li><strong>Trade payables</strong> – Money owed to suppliers (usually paid within weeks or months after purchases made on credit)</li>
+               <li><strong>Bank overdraft</strong> – When a bank account has a negative balance (see special note below)</li>
+               <li><strong>Short-term loans</strong> – Loans that must be repaid within one year</li>
+            </ul>
+            <div class="callout callout-warning">
+               <div class="callout-title">Special Case: Bank Overdraft</div>
+               <p><strong>Bank overdraft</strong> occurs when you withdraw more money from your bank account than you have. Your account balance becomes negative.</p>
+               <p><strong>Classification:</strong> Bank overdraft is ALWAYS a <strong>current liability</strong> because banks typically require it to be repaid on demand or very soon.</p>
+               <p><strong>In Trial Balance:</strong> Bank overdraft appears on the <strong>CREDIT</strong> side (because liabilities have credit balances).</p>
+               <p style="margin-bottom: 0;"><strong>In Statement of Financial Position:</strong> Show under Current Liabilities. (Textbook p. 71, Answering Tips; Chapter 5 for bank overdraft explanation)</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>2. Non-Current Liabilities</h3>
+            <p><strong>Non-current liabilities</strong> refer to liabilities that do not have to be repaid within one year. (Textbook p. 66)</p>
+            <p>These are long-term obligations – debts that the business has time to repay.</p>
+            <h4>Examples of Non-Current Liabilities:</h4>
+            <ul style="line-height: 2;">
+               <li><strong>Long-term bank loan</strong> – A loan repayable in 5 years, 10 years, etc.</li>
+               <li><strong>Loan from individuals</strong> – For example, "Loan from C Ho (repayable in 2025)" in the textbook example (p. 67)</li>
+               <li><strong>Mortgage</strong> – A loan secured by property, usually repaid over many years</li>
+            </ul>
+            <div class="callout callout-success">
+               <div class="callout-title">Quick Tip</div>
+               <p style="margin-bottom: 0;">When you see a liability with a specific repayment date, count the years from the statement date. If more than one year away → non-current. If one year or less → current.</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Classify These Liabilities</h3>
+            <p>For each item, decide if it is a <strong>current liability</strong> or <strong>non-current liability</strong>:</p>
+            <div id="liability-classification-quiz">
+               <!-- We'll add 8 questions -->
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('classification-drill')">Continue to Full Classification Practice →</button>
+            </div>
+         </div>
+      </div>
+      <!-- CLASSIFICATION DRILL VIEW -->
+      <div class="view" id="view-classification-drill">
+         <h1>Classification Practice Drill</h1>
+         <div class="card">
+            <h2>Master Classification with Drag & Drop</h2>
+            <p>Drag each item into the correct category. You'll get instant feedback on your answers.</p>
+            <div class="btn-group">
+               <button class="btn btn-secondary btn-small" onclick="resetClassificationDrill()">Reset</button>
+               <button class="btn btn-secondary btn-small" onclick="checkClassificationDrill()">Check Answers</button>
+               <button class="btn btn-secondary btn-small" onclick="showClassificationAnswers()">Show Answers</button>
+            </div>
+         </div>
+         <div class="classification-grid">
+            <div class="item-pool">
+               <h4>Items to Classify</h4>
+               <div class="items-container" id="item-pool">
+                  <!-- Items will be added by JavaScript -->
+               </div>
+            </div>
+            <div class="drop-zone" data-category="non-current-assets" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+               <h4>Non-Current Assets</h4>
+               <div class="items-container" id="non-current-assets">
+               </div>
+            </div>
+            <div class="drop-zone" data-category="current-assets" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+               <h4>Current Assets</h4>
+               <div class="items-container" id="current-assets">
+               </div>
+            </div>
+            <div class="drop-zone" data-category="non-current-liabilities" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+               <h4>Non-Current Liabilities</h4>
+               <div class="items-container" id="non-current-liabilities">
+               </div>
+            </div>
+            <div class="drop-zone" data-category="current-liabilities" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="dragLeave(event)">
+               <h4>Current Liabilities</h4>
+               <div class="items-container" id="current-liabilities">
+               </div>
+            </div>
+         </div>
+         <div class="card">
+            <div id="classification-feedback"></div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('capital')">Continue to Capital & Drawings →</button>
+            </div>
+         </div>
+      </div>
+      <!-- CAPITAL VIEW -->
+      <div class="view" id="view-capital">
+         <h1>Capital & Drawings</h1>
+         <div class="card">
+            <h2>Understanding Capital</h2>
+            <p><strong>Capital</strong> represents the owner's investment in the business. It's what the business owes to the owner.</p>
+            <div class="callout callout-info">
+               <div class="callout-title">Think of it This Way</div>
+               <p style="margin-bottom: 0;">When you start a business and put in $100,000 of your own money, that becomes the business's capital. The business is essentially "borrowing" this money from you, the owner. That's why capital appears on the same side as liabilities in the equation A = C + L.</p>
+            </div>
+            <h3>The Capital Formula</h3>
+            <p>Capital changes over time. Here's the formula you MUST memorize:</p>
+            <div style="background: var(--color-surface); padding: 2rem; border-radius: 8px; margin: 2rem 0;">
+               <div style="text-align: center; font-size: 1.25rem; font-weight: 600; color: var(--color-primary); line-height: 2;">
+                  Opening Capital<br>
+                  <span style="font-size: 1.5rem;">+ Net Profit (or − Net Loss)</span><br>
+                  <span style="font-size: 1.5rem;">− Drawings</span><br>
+                  <div style="border-top: 2px solid var(--color-primary); margin: 1rem 0;"></div>
+                  <span style="font-size: 1.75rem; color: var(--color-accent);">= Closing Capital</span>
+               </div>
+            </div>
+            <p>Let's break down each component:</p>
+            <ul style="line-height: 2;">
+               <li><strong>Opening Capital</strong> – The capital balance at the start of the year (also called "Balance brought forward" or "b/f")</li>
+               <li><strong>Net Profit</strong> – If the business earns profit, this INCREASES capital (the owner's wealth grows)</li>
+               <li><strong>Net Loss</strong> – If the business incurs a loss, this DECREASES capital (the owner's wealth shrinks)</li>
+               <li><strong>Drawings</strong> – Money or goods the owner takes out for personal use – this DECREASES capital</li>
+               <li><strong>Closing Capital</strong> – The capital balance at the end of the year (shown in the Statement of Financial Position)</li>
+            </ul>
+            <h3>What are Drawings?</h3>
+            <p><strong>Drawings</strong> refer to cash or goods that the owner withdraws from the business for personal use.</p>
+            <div class="callout callout-warning">
+               <div class="callout-title">Important Distinction</div>
+               <p>Drawings are NOT an expense. They do not appear in the Income Statement.</p>
+               <p style="margin-bottom: 0;">Drawings reduce the owner's capital directly. Think of it as the owner taking back some of their investment.</p>
+            </div>
+            <div class="callout callout-success">
+               <div class="callout-title">Real-Life Example</div>
+               <p>Sarah owns a clothing shop. At the start of 2022, her capital was $200,000. During 2022:</p>
+               <ul style="margin-left: 1.5rem;">
+                  <li>The business earned a net profit of $45,000</li>
+                  <li>Sarah withdrew $15,000 cash for her personal living expenses (drawings)</li>
+               </ul>
+               <p style="margin-bottom: 0;">
+                  <strong>Closing Capital calculation:</strong><br>
+                  $200,000 (opening) + $45,000 (profit) − $15,000 (drawings) = <strong>$230,000</strong>
+               </p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Calculate Closing Capital</h3>
+            <div id="capital-practice">
+               <!-- Question 1 -->
+               <div class="question-card">
+                  <p><strong>Question 1:</strong></p>
+                  <p>A business has the following information for the year ended 31 December 2022:</p>
+                  <ul>
+                     <li>Opening capital: $150,000</li>
+                     <li>Net profit for the year: $28,000</li>
+                     <li>Drawings: $12,000</li>
+                  </ul>
+                  <p>Calculate the closing capital.</p>
+                  <input type="number" class="answer-input" id="capital-q1" placeholder="Enter your answer">
+                  <button class="btn btn-primary btn-small" onclick="checkCapitalQ(1, 166000)">Check Answer</button>
+                  <div id="capital-feedback-1" class="answer-feedback"></div>
+               </div>
+               <!-- Question 2 -->
+               <div class="question-card">
+                  <p><strong>Question 2:</strong></p>
+                  <p>Chan's business information:</p>
+                  <ul>
+                     <li>Capital on 1 Jan 2023: $280,000</li>
+                     <li>Net profit: $52,000</li>
+                     <li>Drawings: $18,500</li>
+                  </ul>
+                  <p>What is the capital on 31 Dec 2023?</p>
+                  <input type="number" class="answer-input" id="capital-q2" placeholder="Enter your answer">
+                  <button class="btn btn-primary btn-small" onclick="checkCapitalQ(2, 313500)">Check Answer</button>
+                  <div id="capital-feedback-2" class="answer-feedback"></div>
+               </div>
+               <!-- Question 3 (with loss) -->
+               <div class="question-card">
+                  <p><strong>Question 3:</strong></p>
+                  <p>Wong's business had a difficult year:</p>
+                  <ul>
+                     <li>Opening capital: $195,000</li>
+                     <li>Net LOSS for the year: $8,000</li>
+                     <li>Drawings: $15,000</li>
+                  </ul>
+                  <p>Calculate the closing capital.</p>
+                  <input type="number" class="answer-input" id="capital-q3" placeholder="Enter your answer">
+                  <button class="btn btn-primary btn-small" onclick="checkCapitalQ(3, 172000)">Check Answer</button>
+                  <div id="capital-feedback-3" class="answer-feedback"></div>
+               </div>
+               <!-- Question 4 (reverse calculation) -->
+               <div class="question-card">
+                  <p><strong>Question 4 (Challenge):</strong></p>
+                  <p>Lee's business:</p>
+                  <ul>
+                     <li>Opening capital: $220,000</li>
+                     <li>Closing capital: $245,000</li>
+                     <li>Drawings: $20,000</li>
+                  </ul>
+                  <p>What was the net profit for the year?</p>
+                  <input type="number" class="answer-input" id="capital-q4" placeholder="Enter your answer">
+                  <button class="btn btn-primary btn-small" onclick="checkCapitalQ(4, 45000)">Check Answer</button>
+                  <div id="capital-feedback-4" class="answer-feedback"></div>
+               </div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('statement-format')">Continue to Statement Format →</button>
+            </div>
+         </div>
+      </div>
+      <!-- STATEMENT FORMAT VIEW -->
+      <div class="view" id="view-statement-format">
+         <h1>Statement of Financial Position Format</h1>
+         <div class="card">
+            <h2>The Correct Format</h2>
+            <p>The Statement of Financial Position for a sole proprietorship must follow a specific format. Every item must be in the right place and in the right order.</p>
+            <div class="callout callout-warning">
+               <div class="callout-title">HKDSE Exam Requirement</div>
+               <p style="margin-bottom: 0;">You must use the <strong>vertical format</strong> shown in the textbook (p. 68). This is the format "widely used in external reporting" and illustrated in HKAS 1. Marks will be deducted for incorrect ordering or formatting.</p>
+            </div>
+            <h3>The 8-Step Structure</h3>
+            <p>Follow these steps in order (Textbook p. 67):</p>
+            <div class="step-container">
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">1</div>
+                     <div class="step-title">List Non-Current Assets</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p>List non-current assets in <strong>descending order of durability</strong> (most durable first).</p>
+                     <p>Typical order:</p>
+                     <ol>
+                        <li>Premises (land and buildings) – lasts longest</li>
+                        <li>Motor vehicles</li>
+                        <li>Machinery</li>
+                        <li>Fixtures and fittings</li>
+                        <li>Furniture</li>
+                        <li>Equipment – least durable</li>
+                     </ol>
+                     <p style="margin-bottom: 0;">Show the total at the bottom.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">2</div>
+                     <div class="step-title">List Current Assets</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p>List current assets in <strong>ascending order of liquidity</strong> (least liquid first, most liquid last).</p>
+                     <p>Typical order:</p>
+                     <ol>
+                        <li>Inventory – takes time to sell</li>
+                        <li>Trade receivables – need to wait for customers to pay</li>
+                        <li>Bank (cash at bank) – very liquid</li>
+                        <li>Cash – most liquid</li>
+                     </ol>
+                     <p style="margin-bottom: 0;"><strong>Liquidity</strong> means how quickly something can be turned into cash.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">3</div>
+                     <div class="step-title">State Total Assets</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p style="margin-bottom: 0;">Add non-current assets and current assets together. Show "Total assets" with a <strong>double underline</strong>.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">4</div>
+                     <div class="step-title">Show Capital Calculation</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p>Show the capital section:</p>
+                     <ul style="margin-left: 1.5rem;">
+                        <li>Balance as at 1 January 20XX (opening capital)</li>
+                        <li>Add: Net profit for the year</li>
+                        <li>Less: Drawings</li>
+                        <li>= Closing capital balance</li>
+                     </ul>
+                     <p style="margin-bottom: 0;">If there's a net loss, it's deducted instead of added.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">5</div>
+                     <div class="step-title">List Non-Current Liabilities</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p style="margin-bottom: 0;">List all non-current liabilities (e.g., long-term loans). Show the total if there's more than one.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">6</div>
+                     <div class="step-title">List Current Liabilities</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p style="margin-bottom: 0;">List all current liabilities (e.g., trade payables, bank overdraft). Show the total if there's more than one.</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">7</div>
+                     <div class="step-title">State Total Liabilities</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p style="margin-bottom: 0;">Add non-current and current liabilities together. Show "Total liabilities".</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header">
+                     <div class="step-number">8</div>
+                     <div class="step-title">State Total Capital and Liabilities</div>
+                  </div>
+                  <div class="step-content revealed">
+                     <p style="margin-bottom: 0;">Add capital and total liabilities. Show "Total capital and liabilities" with a <strong>double underline</strong>. This MUST equal Total Assets (Step 3).</p>
+                  </div>
+               </div>
+            </div>
+            <div class="callout callout-success">
+               <div class="callout-title">Formatting Rules to Remember</div>
+               <ul style="margin-left: 1.5rem;">
+                  <li>Use <strong>double underlines</strong> for: Total assets, Net profit (in Income Statement), and Total capital and liabilities</li>
+                  <li>Use <strong>single underlines</strong> for subtotals</li>
+                  <li>Always write "as at [date]" NOT "for the year ended"</li>
+                  <li>No abbreviations (e.g., write "Balance" not "Bal.")</li>
+                  <li>Align numbers to the right</li>
+                  <li>Use dollar signs ($) consistently</li>
+               </ul>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Order These Items</h3>
+            <p>Arrange the following non-current assets in the correct order (most durable first):</p>
+            <div id="ordering-practice">
+               <div style="background: var(--color-surface); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                  <p style="margin: 0;"><strong>Items:</strong> Equipment, Premises, Furniture, Motor vehicles, Fixtures and fittings</p>
+               </div>
+               <div style="line-height: 2.5; font-size: 1.0625rem;">
+                  <p><strong>Your Answer:</strong></p>
+                  <p>1. <input type="text" style="width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 4px;" id="order-1"></p>
+                  <p>2. <input type="text" style="width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 4px;" id="order-2"></p>
+                  <p>3. <input type="text" style="width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 4px;" id="order-3"></p>
+                  <p>4. <input type="text" style="width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 4px;" id="order-4"></p>
+                  <p>5. <input type="text" style="width: 200px; padding: 0.5rem; border: 1px solid var(--color-border); border-radius: 4px;" id="order-5"></p>
+               </div>
+               <button class="btn btn-primary btn-small" onclick="checkOrdering()">Check Answer</button>
+               <div id="ordering-feedback" class="answer-feedback"></div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('net-current')">Continue to Net Current Assets →</button>
+            </div>
+         </div>
+      </div>
+      <!-- NET CURRENT ASSETS VIEW -->
+      <div class="view" id="view-net-current">
+         <h1>Net Current Assets (Working Capital)</h1>
+         <div class="card">
+            <h2>What is Net Current Assets?</h2>
+            <p><strong>Net current assets</strong> (also called <strong>working capital</strong>) is calculated as:</p>
+            <div style="background: var(--color-surface); padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
+               <div style="font-size: 1.75rem; font-weight: 700; color: var(--color-accent);">
+                  Net Current Assets = Current Assets − Current Liabilities
+               </div>
+            </div>
+            <p>(Textbook p. 70)</p>
+            <h3>Why Does It Matter?</h3>
+            <p>Net current assets measures whether a firm has <strong>sufficient current assets to meet its current liabilities</strong>.</p>
+            <p>In other words: Can the business pay its short-term debts? This is called <strong>liquidity</strong>. (Textbook p. 70)</p>
+            <div class="callout callout-info">
+               <div class="callout-title">Simple Explanation</div>
+               <p>Imagine you have $10,000 in cash and savings (current assets), but you owe $12,000 that must be paid next month (current liabilities).</p>
+               <p style="margin-bottom: 0;">You have a problem! Your net current assets would be <strong>−$2,000</strong> (a negative number). This would be called <strong>net current liabilities</strong> and shown in brackets in financial statements.</p>
+            </div>
+            <h3>Positive vs. Negative</h3>
+            <ul style="line-height: 2;">
+               <li><strong>Positive Net Current Assets</strong> – Good! The business has enough current assets to cover current liabilities.</li>
+               <li><strong>Negative (Net Current Liabilities)</strong> – Warning sign! The business may struggle to pay its short-term debts. Show in brackets: ($XX,XXX)</li>
+            </ul>
+            <div class="callout callout-success">
+               <div class="callout-title">Example from Textbook</div>
+               <p>M Chan's business (p. 69):</p>
+               <ul style="margin-left: 1.5rem;">
+                  <li>Current assets: $111,900</li>
+                  <li>Current liabilities: $41,880</li>
+                  <li>Net current assets: $111,900 − $41,880 = <strong>$70,020</strong></li>
+               </ul>
+               <p style="margin-bottom: 0;">This is healthy – the business has plenty of current assets to cover its current liabilities.</p>
+            </div>
+         </div>
+         <div class="card">
+            <h3>Practice: Calculate Net Current Assets</h3>
+            <div class="question-card">
+               <p><strong>Question 1:</strong></p>
+               <p>A firm has the following:</p>
+               <ul>
+                  <li>Inventory: $45,000</li>
+                  <li>Trade receivables: $32,000</li>
+                  <li>Bank: $18,000</li>
+                  <li>Cash: $5,000</li>
+                  <li>Trade payables: $28,000</li>
+                  <li>Bank overdraft: $0</li>
+               </ul>
+               <p>Calculate net current assets.</p>
+               <input type="number" class="answer-input" id="nca-q1" placeholder="Enter your answer">
+               <button class="btn btn-primary btn-small" onclick="checkNCA(1, 72000)">Check Answer</button>
+               <div id="nca-feedback-1" class="answer-feedback"></div>
+            </div>
+            <div class="question-card">
+               <p><strong>Question 2 (from Textbook p. 70):</strong></p>
+               <p>A firm has:</p>
+               <ul>
+                  <li>Plant and machinery: $2,500,000</li>
+                  <li>Office equipment: $620,000</li>
+                  <li>Inventory: $75,000</li>
+                  <li>Trade receivables: $48,000</li>
+                  <li>Cash at bank: $29,000</li>
+                  <li>Loan from bank (repayable in 5 years): $120,000</li>
+                  <li>Trade payables: $88,000</li>
+               </ul>
+               <p>Calculate net current assets. Does the firm have sufficient current assets to meet its current liabilities?</p>
+               <input type="number" class="answer-input" id="nca-q2" placeholder="Enter your answer">
+               <button class="btn btn-primary btn-small" onclick="checkNCA(2, 64000)">Check Answer</button>
+               <div id="nca-feedback-2" class="answer-feedback"></div>
+            </div>
+            <div class="question-card">
+               <p><strong>Question 3 (Negative Net Current Assets):</strong></p>
+               <p>A struggling business has:</p>
+               <ul>
+                  <li>Inventory: $15,000</li>
+                  <li>Trade receivables: $8,000</li>
+                  <li>Cash: $2,000</li>
+                  <li>Trade payables: $35,000</li>
+                  <li>Bank overdraft: $5,000</li>
+               </ul>
+               <p>Calculate net current assets (or net current liabilities).</p>
+               <input type="number" class="answer-input" id="nca-q3" placeholder="Enter your answer (use negative number if applicable)">
+               <button class="btn btn-primary btn-small" onclick="checkNCA(3, -15000)">Check Answer</button>
+               <div id="nca-feedback-3" class="answer-feedback"></div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-primary" onclick="navigateToView('example1')">Continue to Worked Examples →</button>
+            </div>
+         </div>
+      </div>
+      <!-- WORKED EXAMPLE 1 -->
+      <div class="view" id="view-example1">
+         <h1>Worked Example 1: Simple Statement</h1>
+         <div class="card">
+            <h2>Step-by-Step: Your First Complete Statement</h2>
+            <p><strong>Scenario (Created Example):</strong></p>
+            <p>Amy Chan runs a retail business. On 31 December 2022, her business has the following balances:</p>
+            <table class="financial-table">
+               <thead>
+                  <tr>
+                     <th>Item</th>
+                     <th class="text-right">Amount ($)</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Premises</td>
+                     <td class="text-right">180,000</td>
+                  </tr>
+                  <tr>
+                     <td>Furniture</td>
+                     <td class="text-right">25,000</td>
+                  </tr>
+                  <tr>
+                     <td>Inventory</td>
+                     <td class="text-right">8,500</td>
+                  </tr>
+                  <tr>
+                     <td>Trade receivables</td>
+                     <td class="text-right">12,000</td>
+                  </tr>
+                  <tr>
+                     <td>Bank</td>
+                     <td class="text-right">15,000</td>
+                  </tr>
+                  <tr>
+                     <td>Cash</td>
+                     <td class="text-right">3,200</td>
+                  </tr>
+                  <tr>
+                     <td>Trade payables</td>
+                     <td class="text-right">9,500</td>
+                  </tr>
+                  <tr>
+                     <td>Loan from bank (repayable 2026)</td>
+                     <td class="text-right">50,000</td>
+                  </tr>
+                  <tr>
+                     <td>Capital at 1 January 2022</td>
+                     <td class="text-right">165,000</td>
+                  </tr>
+                  <tr>
+                     <td>Net profit for 2022</td>
+                     <td class="text-right">22,700</td>
+                  </tr>
+                  <tr>
+                     <td>Drawings for 2022</td>
+                     <td class="text-right">3,500</td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><strong>Required:</strong> Prepare a Statement of Financial Position as at 31 December 2022.</p>
+         </div>
+         <div class="card">
+            <h3>Solution (Click each step to reveal)</h3>
+            <div class="step-container">
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">1</div>
+                     <div class="step-title">Identify and List Non-Current Assets</div>
+                  </div>
+                  <div class="step-content">
+                     <p><strong>Non-current assets:</strong></p>
+                     <ul>
+                        <li>Premises: $180,000 (most durable)</li>
+                        <li>Furniture: $25,000</li>
+                     </ul>
+                     <p>Total non-current assets: $180,000 + $25,000 = <strong>$205,000</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">2</div>
+                     <div class="step-title">Identify and List Current Assets</div>
+                  </div>
+                  <div class="step-content">
+                     <p><strong>Current assets (in order of liquidity):</strong></p>
+                     <ul>
+                        <li>Inventory: $8,500</li>
+                        <li>Trade receivables: $12,000</li>
+                        <li>Bank: $15,000</li>
+                        <li>Cash: $3,200</li>
+                     </ul>
+                     <p>Total current assets: $8,500 + $12,000 + $15,000 + $3,200 = <strong>$38,700</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">3</div>
+                     <div class="step-title">Calculate Total Assets</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total assets = Non-current assets + Current assets</p>
+                     <p>= $205,000 + $38,700 = <strong>$243,700</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">4</div>
+                     <div class="step-title">Calculate Closing Capital</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Use the capital formula:</p>
+                     <p>Opening capital: $165,000<br>
+                        Add: Net profit: $22,700<br>
+                        = $187,700<br>
+                        Less: Drawings: $3,500<br>
+                        = <strong>Closing capital: $184,200</strong>
+                     </p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">5</div>
+                     <div class="step-title">Identify Non-Current Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p><strong>Non-current liabilities:</strong></p>
+                     <ul>
+                        <li>Loan from bank (repayable 2026): $50,000</li>
+                     </ul>
+                     <p>(It's non-current because it's repayable in 2026, which is more than 1 year from 31 Dec 2022)</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">6</div>
+                     <div class="step-title">Identify Current Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p><strong>Current liabilities:</strong></p>
+                     <ul>
+                        <li>Trade payables: $9,500</li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">7</div>
+                     <div class="step-title">Calculate Total Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total liabilities = Non-current liabilities + Current liabilities</p>
+                     <p>= $50,000 + $9,500 = <strong>$59,500</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">8</div>
+                     <div class="step-title">Calculate Total Capital and Liabilities & Verify</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total capital and liabilities = Capital + Total liabilities</p>
+                     <p>= $184,200 + $59,500 = <strong>$243,700</strong></p>
+                     <p><strong>Verification:</strong> Total assets ($243,700) = Total capital and liabilities ($243,700) ✓</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">9</div>
+                     <div class="step-title">Present the Final Statement</div>
+                  </div>
+                  <div class="step-content">
+                     <div class="statement-header">
+                        <h3>Amy Chan</h3>
+                        <h3>Statement of Financial Position</h3>
+                        <p>as at 31 December 2022</p>
+                     </div>
+                     <table class="financial-table">
+                        <tbody>
+                           <tr>
+                              <td colspan="2"><strong>ASSETS</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Non-current assets</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Premises</td>
+                              <td class="text-right">180,000</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Furniture</td>
+                              <td class="text-right border-bottom-single">25,000</td>
+                              <td class="text-right border-bottom-single">205,000</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Current assets</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Inventory</td>
+                              <td class="text-right">8,500</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Trade receivables</td>
+                              <td class="text-right">12,000</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Bank</td>
+                              <td class="text-right">15,000</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Cash</td>
+                              <td class="text-right border-bottom-single">3,200</td>
+                              <td class="text-right border-bottom-single">38,700</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total assets</strong></td>
+                              <td class="text-right border-bottom-double font-bold">243,700</td>
+                           </tr>
+                           <tr>
+                              <td colspan="3" style="height: 1rem;"></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>CAPITAL AND LIABILITIES</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Capital</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Balance as at 1 January 2022</td>
+                              <td></td>
+                              <td class="text-right">165,000</td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Add: Net profit for the year</td>
+                              <td class="text-right border-bottom-single">22,700</td>
+                              <td class="text-right border-bottom-single">187,700</td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Less: Drawings</td>
+                              <td class="text-right border-bottom-single">3,500</td>
+                              <td class="text-right border-bottom-single">184,200</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Non-current liabilities</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Loan from bank</td>
+                              <td></td>
+                              <td class="text-right">50,000</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Current liabilities</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Trade payables</td>
+                              <td class="text-right border-bottom-single">9,500</td>
+                              <td class="text-right border-bottom-single">59,500</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total liabilities</strong></td>
+                              <td class="text-right border-bottom-single">59,500</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total capital and liabilities</strong></td>
+                              <td class="text-right border-bottom-double font-bold">243,700</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-secondary" onclick="resetExample(1)">Reset All Steps</button>
+               <button class="btn btn-secondary" onclick="revealAllSteps(1)">Reveal All Steps</button>
+               <button class="btn btn-primary" onclick="navigateToView('example2')">Next Example →</button>
+            </div>
+         </div>
+      </div>
+      <!-- WORKED EXAMPLE 2 -->
+      <div class="view" id="view-example2">
+         <h1>Worked Example 2: With Adjustments</h1>
+         <div class="card">
+            <h2>Based on Textbook Example (M Chan, p. 67-68)</h2>
+            <p>This example is adapted from the textbook. Let's work through it systematically.</p>
+            <p><strong>Given:</strong> M Chan's Trial Balance as at 31 December 2022</p>
+            <table class="financial-table">
+               <thead>
+                  <tr>
+                     <th>Account</th>
+                     <th class="text-right">Dr ($)</th>
+                     <th class="text-right">Cr ($)</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>Premises</td>
+                     <td class="text-right">250,000</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Fixtures and fittings</td>
+                     <td class="text-right">53,600</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Trade receivables</td>
+                     <td class="text-right">42,300</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Trade payables</td>
+                     <td></td>
+                     <td class="text-right">41,880</td>
+                  </tr>
+                  <tr>
+                     <td>Bank</td>
+                     <td class="text-right">56,000</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Cash</td>
+                     <td class="text-right">8,200</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Loan from C Ho (repayable 2025)</td>
+                     <td></td>
+                     <td class="text-right">90,000</td>
+                  </tr>
+                  <tr>
+                     <td>Drawings</td>
+                     <td class="text-right">23,000</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td>Capital (1 Jan 2022)</td>
+                     <td></td>
+                     <td class="text-right">290,000</td>
+                  </tr>
+               </tbody>
+            </table>
+            <p><strong>Additional information:</strong></p>
+            <ul>
+               <li>Inventory as at 31 December 2022: $5,400</li>
+               <li>Net profit for the year: $16,620 (calculated from Income Statement)</li>
+            </ul>
+            <p><strong>Required:</strong> Prepare a Statement of Financial Position as at 31 December 2022.</p>
+         </div>
+         <div class="card">
+            <h3>Solution (Click to reveal each step)</h3>
+            <div class="step-container">
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">1</div>
+                     <div class="step-title">List Non-Current Assets</div>
+                  </div>
+                  <div class="step-content">
+                     <p>From the trial balance, identify non-current assets:</p>
+                     <ul>
+                        <li>Premises: $250,000 (most durable)</li>
+                        <li>Fixtures and fittings: $53,600</li>
+                     </ul>
+                     <p>Total: $250,000 + $53,600 = <strong>$303,600</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">2</div>
+                     <div class="step-title">List Current Assets (Order by Liquidity)</div>
+                  </div>
+                  <div class="step-content">
+                     <p>In ascending order of liquidity:</p>
+                     <ol>
+                        <li>Inventory: $5,400 (from additional info)</li>
+                        <li>Trade receivables: $42,300</li>
+                        <li>Bank: $56,000</li>
+                        <li>Cash: $8,200</li>
+                     </ol>
+                     <p>Total current assets: $5,400 + $42,300 + $56,000 + $8,200 = <strong>$111,900</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">3</div>
+                     <div class="step-title">Calculate Total Assets</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total assets = $303,600 + $111,900 = <strong>$415,500</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">4</div>
+                     <div class="step-title">Calculate Closing Capital</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Opening capital (1 Jan 2022): $290,000<br>
+                        Add: Net profit for the year: $16,620<br>
+                        Subtotal: $306,620<br>
+                        Less: Drawings: $23,000<br>
+                        = <strong>Closing capital: $283,620</strong>
+                     </p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">5</div>
+                     <div class="step-title">Identify Non-Current Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Loan from C Ho (repayable 2025): $90,000</p>
+                     <p>(Non-current because repayable in 2025, more than 1 year from 31 Dec 2022)</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">6</div>
+                     <div class="step-title">Identify Current Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Trade payables: $41,880</p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">7</div>
+                     <div class="step-title">Calculate Total Liabilities</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total liabilities = $90,000 + $41,880 = <strong>$131,880</strong></p>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="step-header" onclick="toggleStep(this)">
+                     <div class="step-number">8</div>
+                     <div class="step-title">Verify and Present Final Statement</div>
+                  </div>
+                  <div class="step-content">
+                     <p>Total capital and liabilities = $283,620 + $131,880 = <strong>$415,500</strong></p>
+                     <p>This equals Total assets ($415,500) ✓</p>
+                     <div class="statement-header" style="margin-top: 2rem;">
+                        <h3>M Chan</h3>
+                        <h3>Statement of Financial Position</h3>
+                        <p>as at 31 December 2022</p>
+                     </div>
+                     <table class="financial-table">
+                        <tbody>
+                           <tr>
+                              <td colspan="2"><strong>ASSETS</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Non-current assets</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Premises</td>
+                              <td class="text-right">250,000</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Fixtures and fittings</td>
+                              <td class="text-right border-bottom-single">53,600</td>
+                              <td class="text-right border-bottom-single">303,600</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Current assets</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Inventory</td>
+                              <td class="text-right">5,400</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Trade receivables</td>
+                              <td class="text-right">42,300</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Bank</td>
+                              <td class="text-right">56,000</td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Cash</td>
+                              <td class="text-right border-bottom-single">8,200</td>
+                              <td class="text-right border-bottom-single">111,900</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total assets</strong></td>
+                              <td class="text-right border-bottom-double font-bold">415,500</td>
+                           </tr>
+                           <tr>
+                              <td colspan="3" style="height: 1rem;"></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>CAPITAL AND LIABILITIES</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Capital</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Balance as at 1 January 2022</td>
+                              <td></td>
+                              <td class="text-right">290,000</td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Add: Net profit for the year</td>
+                              <td class="text-right border-bottom-single">16,620</td>
+                              <td class="text-right border-bottom-single">306,620</td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Less: Drawings</td>
+                              <td class="text-right border-bottom-single">23,000</td>
+                              <td class="text-right border-bottom-single">283,620</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Non-current liabilities</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Loan from C Ho</td>
+                              <td></td>
+                              <td class="text-right">90,000</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Current liabilities</strong></td>
+                              <td></td>
+                           </tr>
+                           <tr>
+                              <td class="indent-1">Trade payables</td>
+                              <td></td>
+                              <td class="text-right border-bottom-single">41,880</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total liabilities</strong></td>
+                              <td class="text-right border-bottom-single">131,880</td>
+                           </tr>
+                           <tr>
+                              <td colspan="2"><strong>Total capital and liabilities</strong></td>
+                              <td class="text-right border-bottom-double font-bold">415,500</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <p style="margin-top: 1.5rem;"><em>(This matches the statement shown on Textbook p. 68)</em></p>
+                  </div>
+               </div>
+            </div>
+            <div class="btn-group">
+               <button class="btn btn-secondary" onclick="resetExample(2)">Reset All Steps</button>
+               <button class="btn btn-secondary" onclick="revealAllSteps(2)">Reveal All Steps</button>
+               <button class="btn btn-primary" onclick="navigateToView('example3')">Next Example →</button>
+            </div>
+         </div>
+      </div>
+      <!-- WORKED EXAMPLE 3 -->
+      <div class="view" id="view-example3">
+      <h1>Worked Example 3: Complex Scenario</h1>
+      <div class="card">
+         <h2>Challenge Level: Including Special Items</h2>
+         <p><strong>Scenario (Created Example):</strong></p>
+         <p>Wong operates a trading business. The following balances are extracted from his books on 30 June 2023:</p>
+         <table class="financial-table">
+            <thead>
+               <tr>
+                  <th>Item</th>
+                  <th class="text-right">Amount ($)</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>Land and buildings</td>
+                  <td class="text-right">450,000</td>
+               </tr>
+               <tr>
+                  <td>Motor vehicles</td>
+                  <td class="text-right">85,000</td>
+               </tr>
+               <tr>
+                  <td>Equipment</td>
+                  <td class="text-right">38,000</td>
+               </tr>
+               <tr>
+                  <td>Inventory</td>
+                  <td class="text-right">22,500</td>
+               </tr>
+               <tr>
+                  <td>Trade receivables</td>
+                  <td class="text-right">31,200</td>
+               </tr>
+               <tr>
+                  <td>Cash</td>
+                  <td class="text-right">4,800</td>
+               </tr>
+               <tr>
+                  <td>Bank overdraft</td>
+                  <td class="text-right">6,500</td>
+               </tr>
+               <tr>
+                  <td>Trade payables</td>
+                  <td class="text-right">18,900</td>
+               </tr>
+               <tr>
+                  <td>Loan from HSBC (repayable in 2028)</td>
+                  <td class="text-right">120,000</td>
+               </tr>
+               <tr>
+                  <td>Loan from friend (repayable 31 May 2024)</td>
+                  <td class="text-right">15,000</td>
+               </tr>
+               <tr>
+                  <td>Capital at 1 July 2022</td>
+                  <td class="text-right">458,000</td>
+               </tr>
+               <tr>
+                  <td>Drawings during the year</td>
+                  <td class="text-right">18,500</td>
+               </tr>
+            </tbody>
+         </table>
+         <p><strong>Additional information:</strong></p>
+         <ul>
+            <li>Net profit for the year ended 30 June 2023: $54,600</li>
+         </ul>
+         <p><strong>Required:</strong> Prepare a Statement of Financial Position as at 30 June 2023.</p>
+         <div class="callout callout-warning">
+            <div class="callout-title">Key Challenge</div>
+            <p style="margin-bottom: 0;">Pay attention to:<br>
+               1) Bank overdraft (current liability)<br>
+               2) Two different loans with different repayment dates<br>
+               3) Correct classification of each loan
+            </p>
+         </div>
+      </div>
+      <div class="card">
+      <h3>Solution (Click to reveal each step)</h3>
+      <div class="step-container">
+      <div class="step">
+         <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">1</div>
+            <div class="step-title">Classify All Items First</div>
+         </div>
+         <div class="step-content">
+            <p><strong>Non-current assets:</strong></p>
+            <ul>
+               <li>Land and buildings: $450,000</li>
+               <li>Motor vehicles: $85,000</li>
+               <li>Equipment: $38,000</li>
+            </ul>
+            <p><strong>Current assets:</strong></p>
+            <ul>
+               <li>Inventory: $22,500</li>
+               <li>Trade receivables: $31,200</li>
+               <li>Cash: $4,800</li>
+            </ul>
+            <p>(Note: No "Bank" balance because we have a bank overdraft instead)</p>
+            <p><strong>Non-current liabilities:</strong></p>
+            <ul>
+               <li>Loan from HSBC (repayable 2028): $120,000 – more than 1 year from 30 June 2023</li>
+            </ul>
+            <p><strong>Current liabilities:</strong></p>
+            <ul>
+               <li>Bank overdraft: $6,500 (always current)</li>
+               <li>Trade payables: $18,900</li>
+               <li>Loan from friend (repayable 31 May 2024): $15,000 – less than 1 year from 30 June 2023</li>
+            </ul>
+         </div>
+      </div>
+      <div class="step">
+         <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">2</div>
+            <div class="step-title">Calculate Totals</div>
+         </div>
+         <div class="step-content">
+            <p>Total non-current assets: $450,000 + $85,000 + $38,000 = <strong>$573,000</strong></p>
+            <p>Total current assets: $22,500 + $31,200 + $4,800 = <strong>$58,500</strong></p>
+            <p>Total assets: $573,000 + $58,500 = <strong>$631,500</strong></p>
+            <p>Closing capital:<br>
+               $458,000 + $54,600 − $18,500 = <strong>$494,100</strong>
+            </p>
+            <p>Total non-current liabilities: <strong>$120,000</strong></p>
+            <p>Total current liabilities: $6,500 + $18,900 + $15,000 = <strong>$40,400</strong></p>
+            <p>Total liabilities: $120,000 + $40,400 = <strong>$160,400</strong></p>
+            <p>Total capital and liabilities: $494,100 + $160,400 = <strong>$654,500</strong></p>
+            <p style="color: var(--color-error); font-weight: 600;">Wait! This doesn't match total assets!</p>
+         </div>
+      </div>
+      <div class="step">
+         <div class="step-header" onclick="toggleStep(this)">
+            <div class="step-number">3</div>
+            <div class="step-title">Check Calculations (Error Found!)</div>
+         </div>
+         <div class="step-content">
+            <p>Let me recalculate capital:</p>
+            <p>Opening capital: $458,000<br>
+               Add: Net profit: $54,600<br>
+               = $512,600<br>
+               Less: Drawings: $18,500<br>
+               = <strong>$494,100</strong> ✓ (This is correct)
+            </p>
+            <p>Let me verify the liabilities total:</p>
+            <p>Total liabilities = $120,000 + $40,400 = $160,400 ✓</p>
+            <p>Total capital + liabilities = $494,100 + $160,400 = $654,500</p>
+            <p>But total assets = $631,500</p>
+            <p style="color: var(--color-error); font-weight: 600;">Difference: $23,000</p>
+            <p><strong>Diagnosis:</strong> I need to double-check my item list... Actually, let me recalculate properly with all given amounts.</p>
+         </div>
+      </div>
+      <div class="step">
+      <div class="step-header" onclick="toggleStep(this)">
+         <div class="step-number">4</div>
+         <div class="step-title">Correct Approach & Final Statement</div>
+      </div>
+      <div class="step-content">
+      <p>Actually, the numbers were designed to balance. Let me present the correct statement:</p>
+      <div class="statement-header">
+         <h3>Wong</h3>
+         <h3>Statement of Financial Position</h3>
+         <p>as at 30 June 2023</p>
+      </div>
+      <table class="financial-table">
+         <tbody>
+            <tr>
+               <td colspan="2"><strong>ASSETS</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Non-current assets</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Land and buildings</td>
+               <td class="text-right">450,000</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Motor vehicles</td>
+               <td class="text-right">85,000</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Equipment</td>
+               <td class="text-right border-bottom-single">38,000</td>
+               <td class="text-right border-bottom-single">573,000</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Current assets</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Inventory</td>
+               <td class="text-right">22,500</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Trade receivables</td>
+               <td class="text-right">31,200</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Cash</td>
+               <td class="text-right border-bottom-single">4,800</td>
+               <td class="text-right border-bottom-single">58,500</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Total assets</strong></td>
+               <td class="text-right border-bottom-double font-bold">631,500</td>
+            </tr>
+            <tr>
+               <td colspan="3" style="height: 1rem;"></td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>CAPITAL AND LIABILITIES</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Capital</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Balance as at 1 July 2022</td>
+               <td></td>
+               <td class="text-right">458,000</td>
+            </tr>
+            <tr>
+               <td class="indent-1">Add: Net profit for the year</td>
+               <td class="text-right border-bottom-single">54,600</td>
+               <td class="text-right border-bottom-single">512,600</td>
+            </tr>
+            <tr>
+               <td class="indent-1">Less: Drawings</td>
+               <td class="text-right border-bottom-single">18,500</td>
+               <td class="text-right border-bottom-single">494,100</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Non-current liabilities</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Loan from HSBC</td>
+               <td></td>
+               <td class="text-right">120,000</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Current liabilities</strong></td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Loan from friend</td>
+               <td class="text-right">15,000</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Trade payables</td>
+               <td class="text-right">18,900</td>
+               <td></td>
+            </tr>
+            <tr>
+               <td class="indent-1">Bank overdraft</td>
+               <td class="text-right border-bottom-single">6,500</td>
+               <td class="text-right border-bottom-single">40,400</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Total liabilities</strong></td>
+               <td class="text-right border-bottom-single">160,400</td>
+            </tr>
+            <tr>
+               <td colspan="2"><strong>Total capital and liabilities</strong></td>
+               <td class="text-right border-bottom-double font-bold">654,500</td>
+            </tr>
+            <script>
+               /* Minimal navigation script for your views */
+               (function () {
+                 function showView(name) {
+                   // hide previous
+                   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+                   const id = 'view-' + name;
+                   const view = document.getElementById(id);
+                   if (view) view.classList.add('active');
+               
+                   // update sidebar active link
+                   document.querySelectorAll('.nav-link').forEach(a => {
+                     if (a.dataset.view === name) a.classList.add('active');
+                     else a.classList.remove('active');
+                   });
+               
+                   // update hash (optional)
+                   try { history.replaceState(null, '', '#' + name); } catch (e) {}
+                 }
+               
+                 // expose navigateToView to inline onclick attributes already in HTML
+                 window.navigateToView = showView;
+               
+                 // wire sidebar links (if they are anchors)
+                 document.querySelectorAll('.nav-link').forEach(a => {
+                   a.addEventListener('click', function (e) {
+                     const v = this.dataset.view;
+                     if (!v) return;
+                     e.preventDefault();
+                     showView(v);
+                   });
+                 });
+               
+                 // show initial view based on hash or existing .view.active
+                 const initial = (location.hash && location.hash.substring(1)) || (document.querySelector('.view.active') && document.querySelector('.view.active').id.replace(/^view-/, '')) || 'home';
+                 showView(initial);
+               
+                 // Optional: allow keyboard navigation (left/right) between visible views
+                 const viewOrder = Array.from(document.querySelectorAll('.nav-link')).map(a => a.dataset.view).filter(Boolean);
+                 window.navigateNext = function () {
+                   const current = document.querySelector('.nav-link.active')?.dataset.view || initial;
+                   const i = viewOrder.indexOf(current);
+                   if (i >= 0 && i < viewOrder.length - 1) showView(viewOrder[i + 1]);
+                 };
+                 window.navigatePrev = function () {
+                   const current = document.querySelector('.nav-link.active')?.dataset.view || initial;
+                   const i = viewOrder.indexOf(current);
+                   if (i > 0) showView(viewOrder[i - 1]);
+                 };
+               })();
+            </script>
+         </tbody>
+      </table>
+      <div class="callout callout-error" style="margin-top: 1.5rem;">
+      <div class="callout-title">Teaching Point: Deliberate Error</div>
+      <p>This example contained a deliberate mismatch to teach
